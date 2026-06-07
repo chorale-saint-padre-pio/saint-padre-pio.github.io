@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Chorale Saint Padre Pio — Get in touch with us.">
+  <title>Contact — Chorale Saint Padre Pio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div style="position:absolute;right:8%;bottom:10%;font-size:10rem;opacity:0.04;color:white;pointer-events:none;user-select:none;">✉</div>
+    <div class="container page-hero-content">
+      <div class="section-label">
+        <span class="label" data-i18n="contact_hero_label"></span>
+      </div>
+      <h1 data-i18n="contact_hero_heading"></h1>
+      <p data-i18n="contact_hero_body"></p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CONTACT MAIN
+  ════════════════════════════════════════ -->
+  <section style="background:var(--beige-ghost);">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(40px,6vw,80px);align-items:start;" class="contact-grid">
+
+        <!-- LEFT: Info -->
+        <div class="reveal">
+          <div class="section-label">
+            <span class="label" data-i18n="contact_info_label"></span>
+          </div>
+          <h2 style="margin-top:12px;font-size:clamp(1.6rem,3vw,2.4rem);" data-i18n="contact_hero_heading"></h2>
+          <div class="deco-line"></div>
+
+          <div class="contact-info-card" style="margin-top:28px;">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">📧</div>
+              <div class="contact-info-text">
+                <label data-i18n="contact_email_label"></label>
+                <span>chorale.spp@gmail.com</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">📞</div>
+              <div class="contact-info-text">
+                <label data-i18n="contact_phone_label"></label>
+                <span>+256 700 000 000</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">📍</div>
+              <div class="contact-info-text">
+                <label data-i18n="contact_location_label"></label>
+                <span>Kampala, Uganda</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">📅</div>
+              <div class="contact-info-text">
+                <label data-i18n="contact_rehearsal_label"></label>
+                <span data-i18n="contact_rehearsal_value"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social links -->
+          <div style="margin-top:28px;">
+            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:14px;" data-i18n="footer_follow"></div>
+            <div style="display:flex;gap:12px;">
+              <a href="#" style="width:44px;height:44px;border-radius:50%;background:var(--glass-bg-strong);backdrop-filter:blur(16px);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--blue-primary);transition:all 0.3s;box-shadow:var(--glass-shadow);" onmouseover="this.style.background='var(--blue-primary)';this.style.color='white';" onmouseout="this.style.background='var(--glass-bg-strong)';this.style.color='var(--blue-primary)';" aria-label="Facebook">f</a>
+              <a href="#" style="width:44px;height:44px;border-radius:50%;background:var(--glass-bg-strong);backdrop-filter:blur(16px);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--blue-primary);transition:all 0.3s;box-shadow:var(--glass-shadow);" onmouseover="this.style.background='var(--blue-primary)';this.style.color='white';" onmouseout="this.style.background='var(--glass-bg-strong)';this.style.color='var(--blue-primary)';" aria-label="YouTube">▶</a>
+              <a href="#" style="width:44px;height:44px;border-radius:50%;background:var(--glass-bg-strong);backdrop-filter:blur(16px);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--blue-primary);transition:all 0.3s;box-shadow:var(--glass-shadow);" onmouseover="this.style.background='var(--blue-primary)';this.style.color='white';" onmouseout="this.style.background='var(--glass-bg-strong)';this.style.color='var(--blue-primary)';" aria-label="Instagram">◉</a>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="map-frame reveal" style="margin-top:28px;">
+            <div style="font-size:2rem;opacity:0.4;">📍</div>
+            <p style="font-size:0.8rem;color:var(--ink-muted);text-align:center;padding:0 16px;">Kampala, Uganda<br><span style="font-size:0.72rem;opacity:0.7;">Map will appear here — replace with an embedded Google Map iframe</span></p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="card reveal reveal-delay-1" style="padding:clamp(24px,4vw,48px);">
+          <h3 style="color:var(--ink);margin-bottom:24px;" data-i18n="contact_form_heading"></h3>
+          <form class="js-form" novalidate>
+            <div class="form-group">
+              <label data-i18n="contact_form_name"></label>
+              <input type="text" data-i18n-placeholder="contact_form_name" required>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_email"></label>
+              <input type="email" data-i18n-placeholder="contact_form_email" required>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_subject"></label>
+              <input type="text" data-i18n-placeholder="contact_form_subject">
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_message"></label>
+              <textarea data-i18n-placeholder="contact_form_message" style="min-height:150px;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              <span data-i18n="contact_form_submit"></span>
+            </button>
+            <div class="form-success" data-i18n="contact_form_success"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       BOTTOM CTA
+  ════════════════════════════════════════ -->
+  <section class="cta-band">
+    <div class="container">
+      <h2 class="reveal" data-i18n="join_heading"></h2>
+      <p class="reveal reveal-delay-1" data-i18n="join_body"></p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
+        <a href="join.html" class="btn btn-white" data-i18n="join_cta"></a>
+        <a href="events.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:white;" data-i18n="nav_events"></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/translations.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <style>
+    @media(max-width:768px){
+      .contact-grid{grid-template-columns:1fr!important;}
+    }
+  </style>
+</body>
+</html>
