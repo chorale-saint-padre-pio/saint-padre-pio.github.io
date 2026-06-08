@@ -10,7 +10,7 @@ const TRANSLATIONS = {
     // Homepage - Hero
     hero_tagline: "Sing. Praise. Unite.",
     hero_heading: "A voice lifted<br>in faith and harmony",
-    hero_subheading: "Chorale Saint Padre Pio brings together voices in joyful praise, celebrating faith through the beauty of sacred music.",
+    hero_subheading: "The Haromies that bring you Closer to God!",
     hero_cta_primary: "Discover Our Story",
     hero_cta_secondary: "Upcoming Events",
 
@@ -24,7 +24,7 @@ const TRANSLATIONS = {
     // Homepage - Events Teaser
     events_label: "Coming Soon",
     events_heading: "Next Performance",
-    events_body: "Join us for our upcoming liturgical concert — an evening of sacred music, devotion, and community. All are welcome.",
+    events_body: "Join us for our upcoming liturgical concert. An evening of sacred music, devotion, and community. All are welcome.",
     events_cta: "See All Events",
     events_link: "View Schedule",
 
