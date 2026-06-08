@@ -58,7 +58,7 @@ function buildNavbar() {
       ${LOGO_IMG}
       <div class="nav-logo-text">
         <span class="nav-logo-name">Chorale Saint Padre Pio</span>
-        <span class="nav-logo-sub">Sacred Music · Uganda</span>
+        <span class="nav-logo-sub">Kampala · Uganda</span>
       </div>
     </a>
     <ul class="nav-links" id="nav-links-list" role="menubar">
