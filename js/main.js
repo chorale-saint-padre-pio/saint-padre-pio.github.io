@@ -1,5 +1,5 @@
 // ================================================
-// CHORALE SAINT PADRE PIO — Main JavaScript
+// CHORALE SAINT PADRE PIO — Main JS v2
 // ================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,21 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
   Lang.init();
 
   // ── Language toggle ──
-  const langToggle = document.getElementById('lang-toggle');
-  if (langToggle) {
-    langToggle.addEventListener('click', () => {
+  document.addEventListener('click', e => {
+    if (e.target && e.target.id === 'lang-toggle') {
       Lang.set(Lang.current === 'en' ? 'fr' : 'en');
-    });
-  }
+    }
+  });
 
   // ── Navbar scroll effect ──
   const navbar = document.querySelector('.navbar');
   if (navbar) {
-    const onScroll = () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
   }
 
   // ── Active nav link ──
@@ -35,69 +32,61 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Hamburger menu ──
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-      // animate bars
-      const bars = hamburger.querySelectorAll('span');
-      if (open) {
-        bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        bars[1].style.opacity = '0';
-        bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-      } else {
-        bars[0].style.transform = '';
-        bars[1].style.opacity = '';
-        bars[2].style.transform = '';
-      }
-    });
-    // Close on link click
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('#hamburger-btn');
+    const navLinks = document.getElementById('nav-links-list');
+    if (!btn || !navLinks) return;
+    const isOpen = navLinks.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    // Prevent body scroll when menu open
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu on nav link click
+  document.addEventListener('click', e => {
+    const navLinks = document.getElementById('nav-links-list');
+    const btn = document.getElementById('hamburger-btn');
+    if (e.target.closest('#nav-links-list a') && navLinks) {
+      navLinks.classList.remove('open');
+      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', e => {
+    const navLinks = document.getElementById('nav-links-list');
+    const btn = document.getElementById('hamburger-btn');
+    if (navLinks && navLinks.classList.contains('open')) {
+      if (!e.target.closest('.navbar')) {
         navLinks.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', false);
-        const bars = hamburger.querySelectorAll('span');
-        bars[0].style.transform = '';
-        bars[1].style.opacity = '';
-        bars[2].style.transform = '';
-      });
-    });
-  }
+        if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+        document.body.style.overflow = '';
+      }
+    }
+  });
 
   // ── Scroll reveal ──
   const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length > 0) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    revealEls.forEach(el => observer.observe(el));
+  if (revealEls.length) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(el => obs.observe(el));
   }
 
-  // ── Counter animation (stats) ──
+  // ── Counter animation ──
   const counters = document.querySelectorAll('.stat-number[data-target]');
-  if (counters.length > 0) {
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            counterObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    counters.forEach(c => counterObserver.observe(c));
+  if (counters.length) {
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObs.observe(c));
   }
 
   function animateCounter(el) {
@@ -105,50 +94,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const suffix = el.getAttribute('data-suffix') || '';
     const duration = 1800;
     const start = performance.now();
-    const update = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+    const update = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
       el.textContent = Math.round(eased * target) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
+      if (p < 1) requestAnimationFrame(update);
     };
     requestAnimationFrame(update);
   }
 
   // ── Form handling ──
   document.querySelectorAll('.js-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
       const successMsg = form.querySelector('.form-success');
       const submitBtn = form.querySelector('button[type="submit"]');
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.6';
-      }
-
-      // Simulate submission (replace with Firebase later)
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.65'; }
+      // Simulate async (replace with Firebase later)
       setTimeout(() => {
-        form.querySelectorAll('input, textarea, select').forEach(field => field.value = '');
+        form.querySelectorAll('input, textarea').forEach(f => f.value = '');
         if (successMsg) successMsg.classList.add('show');
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '';
-        }
-        setTimeout(() => {
-          if (successMsg) successMsg.classList.remove('show');
-        }, 5000);
-      }, 800);
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = ''; }
+        setTimeout(() => { if (successMsg) successMsg.classList.remove('show'); }, 5000);
+      }, 900);
     });
   });
 
   // ── Footer newsletter ──
   document.querySelectorAll('.newsletter-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
       const input = form.querySelector('input');
       const btn = form.querySelector('button');
       if (input && btn && input.value.trim()) {
-        btn.textContent = '✓';
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
         btn.style.background = '#4aaa80';
         input.value = '';
         setTimeout(() => {
