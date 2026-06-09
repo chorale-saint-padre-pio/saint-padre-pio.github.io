@@ -1,5 +1,5 @@
 // ================================================
-// CHORALE SAINT PADRE PIO — Main JS v2
+// CHORALE SAINT PADRE PIO — Main JS v3
 // ================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,10 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Language init ──
   Lang.init();
 
+  // ── Fire content-ready so content.js can inject dynamic data ──
+  function fireContentReady() {
+    document.dispatchEvent(new Event('content-ready'));
+  }
+  fireContentReady();
+
   // ── Language toggle ──
   document.addEventListener('click', e => {
     if (e.target && e.target.id === 'lang-toggle') {
       Lang.set(Lang.current === 'en' ? 'fr' : 'en');
+      // Re-apply dynamic content in new language
+      document.dispatchEvent(new Event('content-ready'));
     }
   });
 
@@ -39,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const isOpen = navLinks.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', isOpen);
-    // Prevent body scroll when menu open
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
@@ -58,12 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', e => {
     const navLinks = document.getElementById('nav-links-list');
     const btn = document.getElementById('hamburger-btn');
-    if (navLinks && navLinks.classList.contains('open')) {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('open');
-        if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
-        document.body.style.overflow = '';
-      }
+    if (navLinks && navLinks.classList.contains('open') && !e.target.closest('.navbar')) {
+      navLinks.classList.remove('open');
+      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+      document.body.style.overflow = '';
     }
   });
 
@@ -78,20 +83,25 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => obs.observe(el));
   }
 
-  // ── Counter animation ──
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-  if (counters.length) {
-    const counterObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
+  // Re-run reveal observer after dynamic content is injected
+  document.addEventListener('content-ready', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        const obs2 = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); obs2.unobserve(e.target); }
+          });
+        }, { threshold: 0.10 });
+        obs2.observe(el);
       });
-    }, { threshold: 0.5 });
-    counters.forEach(c => counterObs.observe(c));
-  }
+    }, 50);
+  });
 
+  // ── Counter animation ──
   function animateCounter(el) {
     const target = parseInt(el.getAttribute('data-target'));
     const suffix = el.getAttribute('data-suffix') || '';
+    if (isNaN(target)) return;
     const duration = 1800;
     const start = performance.now();
     const update = now => {
@@ -103,6 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(update);
   }
 
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+
+  function observeCounters() {
+    document.querySelectorAll('.stat-number[data-target]').forEach(c => counterObs.observe(c));
+  }
+  observeCounters();
+  document.addEventListener('content-ready', observeCounters);
+
   // ── Form handling ──
   document.querySelectorAll('.js-form').forEach(form => {
     form.addEventListener('submit', e => {
@@ -110,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const successMsg = form.querySelector('.form-success');
       const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.65'; }
-      // Simulate async (replace with Firebase later)
       setTimeout(() => {
         form.querySelectorAll('input, textarea').forEach(f => f.value = '');
         if (successMsg) successMsg.classList.add('show');
