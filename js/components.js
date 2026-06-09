@@ -84,7 +84,7 @@ function buildFooter() {
             ${LOGO_IMG}
             <div class="nav-logo-text">
               <span class="nav-logo-name">Chorale Saint Padre Pio</span>
-              <span class="nav-logo-sub">Sacred Music · Uganda</span>
+              <span class="nav-logo-sub">Kampala · Uganda</span>
             </div>
           </a>
           <p data-i18n="footer_tagline"></p>
@@ -101,9 +101,11 @@ function buildFooter() {
         </div>
         <div class="footer-col">
           <h5 data-i18n="footer_contact"></h5>
-          <p style="display:flex;align-items:center;gap:7px;">${ICONS.mail} chorale.spp@gmail.com</p>
-          <p style="display:flex;align-items:center;gap:7px;">${ICONS.phone} +256 700 000 000</p>
-          <p style="display:flex;align-items:center;gap:7px;">${ICONS.location} Kampala, Uganda</p>
+          <div class="footer-contact-list">
+            <p>${ICONS.mail} <span data-contact="email"></span></p>
+            <p>${ICONS.phone} <span data-contact="phone"></span></p>
+            <p>${ICONS.location} <span data-contact="address"></span></p>
+          </div>
         </div>
         <div class="footer-col">
           <h5 data-i18n="footer_newsletter"></h5>
@@ -114,9 +116,9 @@ function buildFooter() {
           <div style="margin-top:18px;">
             <h5 data-i18n="footer_follow" style="margin-bottom:10px;"></h5>
             <div class="footer-socials">
-              <a href="#" aria-label="Facebook">${ICONS.facebook}</a>
-              <a href="#" aria-label="YouTube">${ICONS.youtube}</a>
-              <a href="#" aria-label="Instagram">${ICONS.instagram}</a>
+              <a href="#" data-social="facebook" aria-label="Facebook">${ICONS.facebook}</a>
+              <a href="#" data-social="youtube" aria-label="YouTube">${ICONS.youtube}</a>
+              <a href="#" data-social="instagram" aria-label="Instagram">${ICONS.instagram}</a>
             </div>
           </div>
         </div>
