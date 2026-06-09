@@ -22,8 +22,8 @@ const SITE_CONTENT = {
   email:     "chorale.spp@gmail.com",
   phone:     "+256 700 000 000",
   address:   "Kampala, Uganda",
-  rehearsal_en: "Every Saturday, 10:00 AM",
-  rehearsal_fr: "Chaque Samedi, 10h00",
+  rehearsal_en: "Every Tuesday & Thursday, 5:15 PM",
+  rehearsal_fr: "Chaque Mardi & Jeudi, 17h15",
 
   // ── Social Media Links ───────────────────────────────────────
   // Paste your full URL, e.g. "https://facebook.com/yourpage"
@@ -33,9 +33,9 @@ const SITE_CONTENT = {
   instagram: "#",
 
   // ── Homepage Stats ───────────────────────────────────────────
-  stat_years:    12,   // Years of music
-  stat_members:  52,   // Active members
-  stat_events:   24,   // Events per year
+  stat_years:    5,   // Years of music
+  stat_members:  24,   // Active members
+  stat_events:   23,   // Events per year
   stat_parishes:  6,   // Parishes served
 
   // ── Upcoming Events ──────────────────────────────────────────
@@ -78,7 +78,7 @@ const SITE_CONTENT = {
       title_en: "Fête de Saint Padre Pio",
       title_fr: "Fête de Saint Padre Pio",
       time: "4:00 PM to 7:00 PM",
-      location: "Paroisse Saint Padre Pio, Kampala",
+      location: "Kansanga Parish, Kampala",
       desc_en: "Annual celebration of our patron saint's feast day with special liturgy, concert and community gathering.",
       desc_fr: "Célébration annuelle de la fête de notre saint patron avec liturgie, concert et rassemblement communautaire.",
       category: "Feast Day",
