@@ -19,8 +19,8 @@ const SITE_CONTENT = {
 
   // ── Contact Information ──────────────────────────────────────
   // Change these to your real details
-  email:     "chorale.spp@gmail.com",
-  phone:     "+256 700 000 000",
+  email:     "stpadrepiofc22@gmail.com",
+  phone:     "+256 776 686 914/ +256 758 787 044",
   address:   "Kampala, Uganda",
   rehearsal_en: "Every Tuesday & Thursday, 5:15 PM",
   rehearsal_fr: "Chaque Mardi & Jeudi, 17h15",
