@@ -10,7 +10,7 @@ const TRANSLATIONS = {
     // Homepage - Hero
     hero_tagline: "Sing. Praise. Unite.",
     hero_heading: "A voice lifted<br>in faith and harmony",
-    hero_subheading: "The Haromies that bring you Closer to God!",
+    hero_subheading: "Sacred voices, joyful praise, one community of faith.",
     hero_cta_primary: "Discover Our Story",
     hero_cta_secondary: "Upcoming Events",
 
@@ -24,14 +24,14 @@ const TRANSLATIONS = {
     // Homepage - Events Teaser
     events_label: "Coming Soon",
     events_heading: "Next Performance",
-    events_body: "Join us for our upcoming liturgical concert. An evening of sacred music, devotion, and community. All are welcome.",
+    events_body: "Join us for our upcoming liturgical concert, an evening of sacred music, devotion and community. All are welcome.",
     events_cta: "See All Events",
     events_link: "View Schedule",
 
     // Homepage - Join Teaser
     join_label: "Open to All",
     join_heading: "Your voice belongs<br>with ours.",
-    join_body: "Whether you are an experienced singer or simply passionate about music and faith, we welcome you with open arms. No audition required — only an open heart.",
+    join_body: "Whether you are an experienced singer or simply passionate about music and faith, we welcome you with open arms. No audition required, only an open heart.",
     join_cta: "Join the Choir",
     join_link: "How to Join",
 
@@ -44,7 +44,7 @@ const TRANSLATIONS = {
     // About Page
     about_hero_label: "Our Story",
     about_hero_heading: "Voices united<br>in devotion.",
-    about_hero_body: "The Chorale Saint Padre Pio was born from a desire to honor God through music and to keep alive the spiritual legacy of a beloved saint.",
+    about_hero_body: "Born from devotion. Shaped by song.",
     about_mission_label: "Our Mission",
     about_mission_heading: "Music as a path to the sacred.",
     about_mission_body: "We believe that sacred music is one of the most powerful ways to encounter God. Our mission is to serve the Church through song, to build community, and to inspire all who hear us.",
@@ -52,7 +52,7 @@ const TRANSLATIONS = {
     value1_title: "Faith",
     value1_body: "Every note we sing is an act of worship, grounded in our shared devotion.",
     value2_title: "Community",
-    value2_body: "We are more than a choir — we are a family, supporting one another in music and in life.",
+    value2_body: "We are more than a choir. We are a family, supporting one another in music and in life.",
     value3_title: "Excellence",
     value3_body: "We strive for musical quality not for pride, but as an offering worthy of the divine.",
     value4_title: "Welcome",
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     // Events Page
     events_hero_label: "Performances & Gatherings",
     events_hero_heading: "Come share<br>the moment with us.",
-    events_hero_body: "From solemn liturgical celebrations to vibrant community concerts, every event is an invitation to encounter beauty and faith.",
+    events_hero_body: "Every performance is an act of worship. All are welcome.",
     events_upcoming: "Upcoming Events",
     events_past: "Past Performances",
     events_no_events: "No upcoming events at this time. Check back soon!",
@@ -76,7 +76,7 @@ const TRANSLATIONS = {
     // Join Page
     join_hero_label: "Become Part of the Choir",
     join_hero_heading: "Your voice<br>is welcome here.",
-    join_hero_body: "We are always looking for new members who share our love of music and faith. There is no audition — only a warm invitation.",
+    join_hero_body: "No audition. No experience needed. Just an open heart.",
     join_why_label: "Why Join?",
     join_why_heading: "More than music.",
     join_perk1_title: "Grow Spiritually",
@@ -94,7 +94,7 @@ const TRANSLATIONS = {
     step2_title: "Attend a Rehearsal",
     step2_body: "Join us for a free first rehearsal to meet the choir and experience our sessions.",
     step3_title: "Welcome!",
-    step3_body: "If it feels right, simply let us know you'd like to join — and you're in.",
+    step3_body: "If it feels right, simply let us know you'd like to join, and you are in.",
     join_form_heading: "Express Your Interest",
     join_form_name: "Full Name",
     join_form_email: "Email Address",
@@ -108,7 +108,7 @@ const TRANSLATIONS = {
     // Contact Page
     contact_hero_label: "Get In Touch",
     contact_hero_heading: "We'd love<br>to hear from you.",
-    contact_hero_body: "Have a question, an invitation, or simply want to learn more? Reach out — we are always happy to connect.",
+    contact_hero_body: "Questions, invitations or just curiosity? We would love to hear from you.",
     contact_info_label: "Contact Information",
     contact_email_label: "Email",
     contact_phone_label: "Phone",
@@ -150,7 +150,7 @@ const TRANSLATIONS = {
     // Homepage - Hero
     hero_tagline: "Chanter. Prier. S'unir.",
     hero_heading: "Une voix élevée<br>dans la foi et l'harmonie",
-    hero_subheading: "La Chorale Saint Padre Pio rassemble des voix en louange joyeuse, célébrant la foi à travers la beauté de la musique sacrée.",
+    hero_subheading: "Des voix sacrées, une louange joyeuse, une communauté de foi.",
     hero_cta_primary: "Découvrir Notre Histoire",
     hero_cta_secondary: "Événements à venir",
 
@@ -164,14 +164,14 @@ const TRANSLATIONS = {
     // Homepage - Events Teaser
     events_label: "À Venir",
     events_heading: "Prochaine Représentation",
-    events_body: "Rejoignez-nous pour notre prochain concert liturgique — une soirée de musique sacrée, de dévotion et de communion. Tous sont les bienvenus.",
+    events_body: "Rejoignez-nous pour notre prochain concert liturgique, une soirée de musique sacrée, de dévotion et de communion. Tous sont bienvenus.",
     events_cta: "Voir Tous les Événements",
     events_link: "Voir le Programme",
 
     // Homepage - Join Teaser
     join_label: "Ouvert à Tous",
     join_heading: "Votre voix est faite<br>pour nous rejoindre.",
-    join_body: "Que vous soyez un chanteur expérimenté ou simplement passionné par la musique et la foi, nous vous accueillons à bras ouverts. Aucune audition requise — seulement un cœur ouvert.",
+    join_body: "Que vous soyez un chanteur expérimenté ou simplement passionné par la musique et la foi, nous vous accueillons à bras ouverts. Aucune audition requise, seulement un coeur ouvert.",
     join_cta: "Rejoindre la Chorale",
     join_link: "Comment Nous Rejoindre",
 
@@ -184,7 +184,7 @@ const TRANSLATIONS = {
     // About Page
     about_hero_label: "Notre Histoire",
     about_hero_heading: "Des voix unies<br>dans la dévotion.",
-    about_hero_body: "La Chorale Saint Padre Pio est née du désir d'honorer Dieu à travers la musique et de faire vivre l'héritage spirituel d'un saint bien-aimé.",
+    about_hero_body: "Née de la dévotion. Forgée par le chant.",
     about_mission_label: "Notre Mission",
     about_mission_heading: "La musique comme chemin vers le sacré.",
     about_mission_body: "Nous croyons que la musique sacrée est l'une des voies les plus puissantes pour rencontrer Dieu. Notre mission est de servir l'Église par le chant, de construire une communauté et d'inspirer tous ceux qui nous écoutent.",
@@ -192,7 +192,7 @@ const TRANSLATIONS = {
     value1_title: "Foi",
     value1_body: "Chaque note que nous chantons est un acte de culte, fondé sur notre dévotion commune.",
     value2_title: "Communauté",
-    value2_body: "Nous sommes plus qu'une chorale — nous sommes une famille, nous soutenant mutuellement dans la musique et dans la vie.",
+    value2_body: "Nous sommes plus qu'une chorale. Nous sommes une famille, nous soutenant mutuellement dans la musique et dans la vie.",
     value3_title: "Excellence",
     value3_body: "Nous recherchons la qualité musicale non par orgueil, mais comme une offrande digne du divin.",
     value4_title: "Accueil",
@@ -204,7 +204,7 @@ const TRANSLATIONS = {
     // Events Page
     events_hero_label: "Spectacles et Rassemblements",
     events_hero_heading: "Venez partager<br>ce moment avec nous.",
-    events_hero_body: "Des solennelles célébrations liturgiques aux vibrants concerts communautaires, chaque événement est une invitation à rencontrer la beauté et la foi.",
+    events_hero_body: "Chaque représentation est un acte de louange. Tous sont bienvenus.",
     events_upcoming: "Événements à Venir",
     events_past: "Représentations Passées",
     events_no_events: "Aucun événement à venir pour l'instant. Revenez bientôt !",
@@ -216,7 +216,7 @@ const TRANSLATIONS = {
     // Join Page
     join_hero_label: "Rejoignez la Chorale",
     join_hero_heading: "Votre voix est<br>la bienvenue ici.",
-    join_hero_body: "Nous cherchons toujours de nouveaux membres qui partagent notre amour de la musique et de la foi. Pas d'audition — seulement une invitation chaleureuse.",
+    join_hero_body: "Pas d'audition. Pas d'expérience requise. Juste un coeur ouvert.",
     join_why_label: "Pourquoi Nous Rejoindre ?",
     join_why_heading: "Plus que de la musique.",
     join_perk1_title: "Grandir Spirituellement",
@@ -248,7 +248,7 @@ const TRANSLATIONS = {
     // Contact Page
     contact_hero_label: "Prenez Contact",
     contact_hero_heading: "Nous serions ravis<br>de vous entendre.",
-    contact_hero_body: "Vous avez une question, une invitation, ou vous souhaitez simplement en savoir plus ? Contactez-nous — nous sommes toujours heureux d'échanger.",
+    contact_hero_body: "Une question, une invitation ou simple curiosité ? Nous serions ravis de vous entendre.",
     contact_info_label: "Informations de Contact",
     contact_email_label: "Email",
     contact_phone_label: "Téléphone",
