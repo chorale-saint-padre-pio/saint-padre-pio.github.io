@@ -1,5 +1,5 @@
 // ================================================
-// CHORALE SAINT PADRE PIO — Main JS v3
+// CHORALE SAINT PADRE PIO — Main JS v4
 // ================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,22 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Language init ──
   Lang.init();
 
-  // ── Fire content-ready so content.js can inject dynamic data ──
-  function fireContentReady() {
-    document.dispatchEvent(new Event('content-ready'));
-  }
-  fireContentReady();
+  // content-ready is fired by components.js after navbar+footer are injected.
+  // Re-fire on language change only:
 
   // ── Language toggle ──
   document.addEventListener('click', e => {
     if (e.target && e.target.id === 'lang-toggle') {
       Lang.set(Lang.current === 'en' ? 'fr' : 'en');
-      // Re-apply dynamic content in new language
       document.dispatchEvent(new Event('content-ready'));
     }
   });
 
-  // ── Navbar scroll effect ──
+  // ── Navbar scroll ──
   const navbar = document.querySelector('.navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
@@ -33,43 +29,38 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Active nav link ──
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (link.getAttribute('href') === currentPage || (currentPage === '' && link.getAttribute('href') === 'index.html')) {
       link.classList.add('active');
     }
   });
 
-  // ── Hamburger menu ──
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('#hamburger-btn');
-    const navLinks = document.getElementById('nav-links-list');
-    if (!btn || !navLinks) return;
-    const isOpen = navLinks.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    btn.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  // Close menu on nav link click
-  document.addEventListener('click', e => {
+  // ── Hamburger: open menu ──
+  function openMenu() {
     const navLinks = document.getElementById('nav-links-list');
     const btn = document.getElementById('hamburger-btn');
-    if (e.target.closest('#nav-links-list a') && navLinks) {
-      navLinks.classList.remove('open');
-      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
-      document.body.style.overflow = '';
-    }
-  });
+    if (!navLinks) return;
+    navLinks.classList.add('open');
+    if (btn) { btn.classList.add('open'); btn.setAttribute('aria-expanded', true); }
+    document.body.style.overflow = 'hidden';
+  }
 
-  // Close menu on outside click
-  document.addEventListener('click', e => {
+  // ── Close menu ──
+  function closeMenu() {
     const navLinks = document.getElementById('nav-links-list');
     const btn = document.getElementById('hamburger-btn');
-    if (navLinks && navLinks.classList.contains('open') && !e.target.closest('.navbar')) {
-      navLinks.classList.remove('open');
-      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
-      document.body.style.overflow = '';
-    }
+    if (!navLinks) return;
+    navLinks.classList.remove('open');
+    if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', e => {
+    // Hamburger button opens menu
+    if (e.target.closest('#hamburger-btn')) { openMenu(); return; }
+    // Close button (X) closes menu
+    if (e.target.closest('#nav-close-btn')) { closeMenu(); return; }
+    // Clicking a nav link closes menu
+    if (e.target.closest('#nav-links-list a')) { closeMenu(); return; }
   });
 
   // ── Scroll reveal ──
@@ -83,16 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => obs.observe(el));
   }
 
-  // Re-run reveal observer after dynamic content is injected
   document.addEventListener('content-ready', () => {
     setTimeout(() => {
       document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-        const obs2 = new IntersectionObserver(entries => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('visible'); obs2.unobserve(e.target); }
-          });
+        const o = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); o.unobserve(e.target); } });
         }, { threshold: 0.10 });
-        obs2.observe(el);
+        o.observe(el);
       });
     }, 50);
   });
@@ -106,19 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const start = performance.now();
     const update = now => {
       const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target) + suffix;
+      el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
       if (p < 1) requestAnimationFrame(update);
     };
     requestAnimationFrame(update);
   }
-
   const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); } });
   }, { threshold: 0.5 });
-
   function observeCounters() {
     document.querySelectorAll('.stat-number[data-target]').forEach(c => counterObs.observe(c));
   }
@@ -151,10 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
         btn.style.background = '#4aaa80';
         input.value = '';
-        setTimeout(() => {
-          btn.textContent = Lang.get('footer_newsletter_btn');
-          btn.style.background = '';
-        }, 3000);
+        setTimeout(() => { btn.textContent = Lang.get('footer_newsletter_btn'); btn.style.background = ''; }, 3000);
       }
     });
   });
