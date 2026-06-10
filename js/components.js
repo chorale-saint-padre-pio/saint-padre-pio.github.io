@@ -64,6 +64,10 @@ function buildNavbar() {
     <ul class="nav-links" id="nav-links-list" role="menubar">
       ${linksHTML}
     </ul>
+    <!-- Close button shown inside the full-screen overlay on mobile -->
+    <button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
     <div class="nav-actions">
       <button id="lang-toggle" aria-label="Toggle language">FR</button>
       <a href="join.html" class="nav-cta" data-i18n="nav_join">${ICONS.music2}</a>
@@ -137,4 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const footerPlaceholder = document.getElementById('footer-placeholder');
   if (footerPlaceholder) footerPlaceholder.outerHTML = buildFooter();
+
+  // Fire content-ready AFTER navbar and footer are in DOM
+  // so content.js can find data-contact / data-social elements in footer
+  document.dispatchEvent(new Event('content-ready'));
 });
