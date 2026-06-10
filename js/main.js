@@ -40,36 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Hamburger menu ──
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('#hamburger-btn');
-    const navLinks = document.getElementById('nav-links-list');
-    if (!btn || !navLinks) return;
-    const isOpen = navLinks.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    btn.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  // Close menu on nav link click
-  document.addEventListener('click', e => {
+  function openMenu() {
     const navLinks = document.getElementById('nav-links-list');
     const btn = document.getElementById('hamburger-btn');
-    if (e.target.closest('#nav-links-list a') && navLinks) {
-      navLinks.classList.remove('open');
-      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
-      document.body.style.overflow = '';
-    }
-  });
+    if (!navLinks) return;
+    navLinks.classList.add('open');
+    if (btn) btn.setAttribute('aria-expanded', true);
+    document.body.style.overflow = 'hidden';
+  }
 
-  // Close menu on outside click
-  document.addEventListener('click', e => {
+  function closeMenu() {
     const navLinks = document.getElementById('nav-links-list');
     const btn = document.getElementById('hamburger-btn');
-    if (navLinks && navLinks.classList.contains('open') && !e.target.closest('.navbar')) {
-      navLinks.classList.remove('open');
-      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
-      document.body.style.overflow = '';
-    }
+    if (!navLinks) return;
+    navLinks.classList.remove('open');
+    if (btn) btn.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('#hamburger-btn'))  { openMenu();  return; }
+    if (e.target.closest('#nav-close-btn'))  { closeMenu(); return; }
+    if (e.target.closest('#nav-links-list a')) { closeMenu(); return; }
   });
 
   // ── Scroll reveal ──
