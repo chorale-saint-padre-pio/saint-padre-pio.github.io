@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Events and performances | Chorale Saint Padre Pio">
+  <meta name="theme-color" content="#ffffff">
+  <title>Events | Chorale Saint Padre Pio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/favicon.png">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <div class="page-hero">
+    <div class="page-hero-img" id="events-hero-img" style="background-image:url('images/events-hero.jpg');"></div>
+    <div class="page-hero-fallback" id="events-hero-fallback"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container page-hero-content">
+      <div class="section-label"><span class="label" data-i18n="events_hero_label"></span></div>
+      <h1 data-i18n="events_hero_heading"></h1>
+      <p data-i18n="events_hero_body"></p>
+    </div>
+  </div>
+
+  <section class="bg-beige-warm">
+    <div class="container">
+      <div class="events-tabs reveal">
+        <button class="tab-btn active" onclick="showTab('upcoming')" data-i18n="events_upcoming"></button>
+        <button class="tab-btn" onclick="showTab('past')" data-i18n="events_past"></button>
+      </div>
+      <div id="tab-upcoming" class="events-panel active">
+        <!-- Populated dynamically by content.js -->
+        <div class="events-list" id="events-upcoming-list"></div>
+      </div>
+      <div id="tab-past" class="events-panel">
+        <div class="events-list" id="events-past-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="container" style="max-width:680px;text-align:center;">
+      <div class="section-label reveal"><span class="label">Rehearsals</span></div>
+      <h2 style="margin-top:12px;" class="reveal reveal-delay-1">Want to sing with us?</h2>
+      <div class="deco-line reveal reveal-delay-1"></div>
+      <p class="reveal reveal-delay-2">Our weekly rehearsals are open to new members. Come experience a session before committing. No pressure, just music and community.</p>
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px;" class="reveal reveal-delay-3">
+        <a href="join.html" class="btn btn-primary" data-i18n="join_cta"></a>
+        <a href="contact.html" class="btn btn-outline" data-i18n="nav_contact"></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/translations.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function showTab(tab){
+      document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&tab==='upcoming')||(i===1&&tab==='past')));
+      document.querySelectorAll('.events-panel').forEach(p=>p.classList.remove('active'));
+      document.getElementById('tab-'+tab).classList.add('active');
+    }
+    (function(){
+      var img=new Image();
+      img.onerror=function(){document.getElementById('events-hero-img').style.display='none';};
+      img.onload=function(){document.getElementById('events-hero-fallback').style.display='none';};
+      img.src='images/events-hero.jpg';
+    })();
+  </script>
+</body>
+</html>
