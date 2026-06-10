@@ -20,10 +20,10 @@ const SITE_CONTENT = {
   // ── Contact Information ──────────────────────────────────────
   // Change these to your real details
   email:     "stpadrepiofc22@gmail.com",
-  phone:     "+256 776 686 914/ +256 758 787 044",
+  phone:     "+256 776 686 914 / +256 758 787 044",
   address:   "Kampala, Uganda",
-  rehearsal_en: "Every Tuesday & Thursday, 5:15 PM",
-  rehearsal_fr: "Chaque Mardi & Jeudi, 17h15",
+  rehearsal_en: "Every Saturday, 10:00 AM",
+  rehearsal_fr: "Chaque Samedi, 10h00",
 
   // ── Social Media Links ───────────────────────────────────────
   // Paste your full URL, e.g. "https://facebook.com/yourpage"
@@ -33,9 +33,9 @@ const SITE_CONTENT = {
   instagram: "#",
 
   // ── Homepage Stats ───────────────────────────────────────────
-  stat_years:    5,   // Years of music
-  stat_members:  24,   // Active members
-  stat_events:   23,   // Events per year
+  stat_years:    12,   // Years of music
+  stat_members:  52,   // Active members
+  stat_events:   24,   // Events per year
   stat_parishes:  6,   // Parishes served
 
   // ── Upcoming Events ──────────────────────────────────────────
@@ -78,7 +78,7 @@ const SITE_CONTENT = {
       title_en: "Fête de Saint Padre Pio",
       title_fr: "Fête de Saint Padre Pio",
       time: "4:00 PM to 7:00 PM",
-      location: "Kansanga Parish, Kampala",
+      location: "Paroisse Saint Padre Pio, Kampala",
       desc_en: "Annual celebration of our patron saint's feast day with special liturgy, concert and community gathering.",
       desc_fr: "Célébration annuelle de la fête de notre saint patron avec liturgie, concert et rassemblement communautaire.",
       category: "Feast Day",
@@ -264,14 +264,10 @@ function applyContactInfo() {
   document.querySelectorAll('[data-contact="rehearsal"]').forEach(el => {
     el.textContent = Lang.current === 'fr' ? SITE_CONTENT.rehearsal_fr : SITE_CONTENT.rehearsal_en;
   });
-
   // Social links
-  const fb = document.querySelectorAll('[data-social="facebook"]');
-  const yt = document.querySelectorAll('[data-social="youtube"]');
-  const ig = document.querySelectorAll('[data-social="instagram"]');
-  fb.forEach(el => el.href = SITE_CONTENT.facebook);
-  yt.forEach(el => el.href = SITE_CONTENT.youtube);
-  ig.forEach(el => el.href = SITE_CONTENT.instagram);
+  document.querySelectorAll('[data-social="facebook"]').forEach(el => { if (SITE_CONTENT.facebook !== '#') el.href = SITE_CONTENT.facebook; });
+  document.querySelectorAll('[data-social="youtube"]').forEach(el => { if (SITE_CONTENT.youtube !== '#') el.href = SITE_CONTENT.youtube; });
+  document.querySelectorAll('[data-social="instagram"]').forEach(el => { if (SITE_CONTENT.instagram !== '#') el.href = SITE_CONTENT.instagram; });
 }
 
 // Inject stats
